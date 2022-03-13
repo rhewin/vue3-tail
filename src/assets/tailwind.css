@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1, .h1 {
+    @apply text-6xl font-bold;
+  }
+  h2, .h2 {
+    @apply text-5xl font-bold;
+  }
+  h3, .h3 {
+    @apply text-4xl font-bold;
+  }
+  h4, .h4 {
+    @apply text-3xl font-bold;
+  }
+  h5, .h5 {
+    @apply text-2xl font-semibold;
+  }
+  h6, .h6 {
+    @apply text-xl font-semibold;
+  }
+  .txt-subtitle-400, .txt-subtitle-normal {
+    @apply text-lg font-normal;
+  }
+  .txt-subtitle-700, .txt-subtitle-bold {
+    @apply text-lg font-bold;
+  }
+  .txt-body1-400, .txt-body1-normal {
+    @apply text-base font-normal;
+  }
+  .txt-body1-700, .txt-body1-bold {
+    @apply text-base font-bold;
+  }
+  .txt-body2-400, .txt-body2-normal {
+    @apply text-sm font-normal;
+  }
+  .txt-body2-700, .txt-body2-bold {
+    @apply text-sm font-bold;
+  }
+  .txt-body3-400, .txt-body3-normal {
+    @apply text-xs font-normal;
+  }
+  .txt-body3-700, .txt-body3-bold {
+    @apply text-xs font-bold;
+  }
+  .txt-caption {
+    @apply text-sm leading-16 italic;
+  }
+  .txt-caption-sm {
+    @apply text-xs leading-14 italic;
+  }
+  .txt-caption-xs {
+    @apply text-2xs leading-12 italic;
+  }
+  .txt-overline {
+    @apply text-xs font-medium uppercase tracking-2;
+  }
+  .txt-textfield {
+    @apply text-sm leading-16 italic;
+  }
+}

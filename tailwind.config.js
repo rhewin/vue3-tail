@@ -1,14 +1,127 @@
-module.exports = {
-  content: [],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: ['./index.html', './src/**/*.{html,vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: {
+          50: '#CCDAEE',
+          100: '#99B5DD',
+          200: '#6690CC',
+          300: '#336BBB',
+          400: '#0146AB',
+          500: '#013F9A',
+          600: '#013889',
+          700: '#013178',
+          800: '#012A67',
+          900: '#012356',
+        },
+        secondary: {
+          50: '#DDF1F9',
+          100: '#BBE3F4',
+          200: '#99D5EE',
+          300: '#77C7E9',
+          400: '#55B9E4',
+          500: '#4DA7CD',
+          600: '#4494B6',
+          700: '#3B82A0',
+          800: '#336F89',
+          900: '#2B5D72',
+        },
+        black: {
+          50: '#E5E5E6',
+          100: '#CBCCCE',
+          200: '#989A9D',
+          300: '#65686C',
+          400: '#383B3F',
+        },
+        green: {
+          50: '#D9F5E8',
+          100: '#B4EBD2',
+          200: '#8EE1BC',
+          300: '#69D7A6',
+          400: '#44CD90',
+        },
+        red: {
+          50: '#FFE2DE',
+          100: '#FFC5BE',
+          200: '#FFA89D',
+          300: '#FF8B7D',
+          400: '#FF6E5D',
+        },
+        yellow: {
+          50: '#FFEFD4',
+          100: '#FFE0A9',
+          200: '#FFD07E',
+          300: '#FFC153',
+          400: '#FFB229',
+        },
+        outline: {
+          blue: '#E2EAF4',
+          black: '#E5E5E5',
+        },
+        surface: {
+          main: '#FFFFFF',
+          light: '#FCFCFC',
+          dark: '#F5F5F5',
+          darkBlue: '#F2F5F5',
+          overlay: '#E8E8E8',
+        },
+        highEmphasis: {
+          dark: '#4C4F54',
+          light: '#FFFFFF',
+        },
+        medEmphasis: {
+          dark: '#7F8184',
+          light: '#FBFBFB',
+        },
+        lowEmphasis: {
+          dark: '#B2B3B5',
+          light: '#F6F6F6',
+        },
+      },
+      fontFamily: {
+        sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+      },
+      fontSize: {
+        '2xs': ['10px', { lineHeight: '12px' }],
+        xs: ['12px', { lineHeight: '16px' }],
+        sm: ['14px', { lineHeight: '20px' }],
+        base: ['16px', { lineHeight: '24px' }],
+        lg: ['18px', { lineHeight: '24px' }],
+        xl: ['20px', { lineHeight: '28px' }],
+        '2xl': ['24px', { lineHeight: '32px' }],
+        '3xl': ['32px', { lineHeight: '40px' }],
+        '4xl': ['40px', { lineHeight: '64px' }],
+        '5xl': ['56px', { lineHeight: '80px' }],
+        '6xl': ['96px', { lineHeight: '124px' }],
+      },
+      letterSpacing: {
+        2: '2px',
+      },
+      lineHeight: {
+        12: '12px',
+        14: '14px',
+        16: '16px',
+        20: '20px',
+        24: '24px',
+        28: '28px',
+        32: '32px',
+        40: '40px',
+        64: '64px',
+        80: '80px',
+        124: '124px',
+      },
+      opacity: {
+        hover: '.04',
+        focused: '.12',
+        pressed: '.10',
+        dragged: '.08',
+        selected: '.16',
+        scrim: '.48',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
