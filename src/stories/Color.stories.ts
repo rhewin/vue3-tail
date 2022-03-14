@@ -1,7 +1,7 @@
 import Color from '../components/foundations/Color/index.vue';
 
 export default {
-  title: 'Example/Color',
+  title: 'Color',
   component: Color,
 };
 
@@ -10,4 +10,4 @@ const Template = () => ({
   template: '<color />',
 });
 
-export const Colors = Template.bind({});
+export const Basic = Template.bind({});
