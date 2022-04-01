@@ -2,6 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import HelloWorld from './components/HelloWorld.vue'
+import Icon from '@/components/foundations/Iconography/BaseIcon.vue';
 </script>
 
 <template>
@@ -26,6 +27,8 @@ import HelloWorld from './components/HelloWorld.vue'
   <p class="txt-caption-xs">Caption/Roboto/Italic/10px</p>
   <p class="txt-overline">OVERLINE/ROBOTO/Medium/10px</p>
   <p class="txt-text-field">Text Field/Roboto/Italic/14px</p>
+  <Icon name="OpenEye" />
+  <Icon name="Check" />
   <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>

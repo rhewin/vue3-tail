@@ -1,22 +1,64 @@
 import PrxButton from '@/components/materials/Button.vue';
 
+const Template = (args: any) => ({
+  components: { PrxButton },
+  setup() {
+    return { args };
+  },
+  template: '<prx-button v-bind="args" />',
+});
+
 export default {
   title: 'Materials/Button',
   component: PrxButton,
+  args: {
+    buttonType: 'contained',
+    colorType: 'primary',
+    icon: '',
+    iconPosition: 'left',
+    isDisabled: false,
+    label: 'Text',
+    size: 'small',
+  },
   argTypes: {
-    backgroundColor: { control: 'color' },
+    buttonType: {
+      options: ['text', 'outlined', 'contained', 'flat'],
+      control: 'select',
+    },
+    colorType: {
+      options: ['primary', 'secondary', 'error'],
+      control: 'select',
+    },
+    icon: {
+      options: [
+        '',
+        'OpenEye',
+        'Check',
+        'Close',
+        'CloseRounded',
+        'HamburgerMenu',
+        'MoreH',
+        'MoreV',
+      ],
+      control: 'select',
+    },
+    iconPosition: {
+      options: ['left', 'right'],
+      control: 'select',
+    },
+    isDisabled: {
+      control: 'boolean',
+    },
+    label: { control: 'text' },
     size: {
-      control: { type: 'select' },
       options: ['small', 'large'],
+      control: 'select',
     },
   },
 };
 
-const Template = (args: unknown, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { PrxButton },
-  template: '<prx-button @onClick="onClickButton" v-bind="$props" />',
-});
+export const Set = Template.bind({});
+
 
 // export const Text = Template.bind({});
 // Text.args = {
@@ -71,80 +113,80 @@ const Template = (args: unknown, { argTypes }) => ({
 //   },
 // };
 
-export const SampleButton = () => ({
-  components: { PrxButton },
-  template: `
-    <div>
-      <div style="display: flex; margin-bottom: 32px">
-        <prx-button @onClick="onClickButton1" label="Cancel" buttonType="text" colorType="secondary" style="margin-right: 8px" />
-        <prx-button @onClick="onClickButton2" label="Save" buttonType="text" colorType="primary" style="margin-right: 32px" />
-        <prx-button @onClick="onClickButton1" label="Secondary" buttonType="text" colorType="secondary" style="margin-right: 32px" />
-        <prx-button @onClick="onClickButton2" label="Disabled" buttonType="text" colorType="primary" isDisabled="true" />
-      </div>
-      <div style="display: flex; margin-bottom: 32px">
-        <prx-button @onClick="onClickButton1" label="Cancel" buttonType="outline" colorType="secondary" style="margin-right: 8px" />
-        <prx-button @onClick="onClickButton2" label="Save" buttonType="outline" colorType="primary" style="margin-right: 32px" />
-        <prx-button @onClick="onClickButton1" label="Secondary" buttonType="outline" colorType="secondary" style="margin-right: 32px" />
-        <prx-button @onClick="onClickButton2" label="Disabled" buttonType="outline" colorType="primary" isDisabled="true" />
-      </div>
-      <div style="display: flex; margin-bottom: 32px">
-        <prx-button @onClick="onClickButton1" label="Cancel" buttonType="contained" colorType="secondary" style="margin-right: 8px" />
-        <prx-button @onClick="onClickButton2" label="Save" buttonType="contained" colorType="primary" style="margin-right: 32px" />
-        <prx-button @onClick="onClickButton1" label="Secondary" buttonType="contained" colorType="secondary" style="margin-right: 32px" />
-        <prx-button @onClick="onClickButton2" label="Disabled" buttonType="contained" colorType="primary" isDisabled="true" />
-      </div>
-    </div>
-  `,
-  methods: {
-    onClickButton1: (isDisabled: boolean) => {
-      if (!isDisabled) {
-        console.log('flat button one clicked');
-      }
-    },
-    onClickButton2: (isDisabled: boolean) => {
-      if (!isDisabled) {
-        console.log('flat button two clicked');
-      }
-    },
-  },
-});
+// export const SampleButton = () => ({
+//   components: { PrxButton },
+//   template: `
+//     <div>
+//       <div style="display: flex; margin-bottom: 32px">
+//         <prx-button @onClick="onClickButton1" label="Cancel" buttonType="text" colorType="secondary" style="margin-right: 8px" />
+//         <prx-button @onClick="onClickButton2" label="Save" buttonType="text" colorType="primary" style="margin-right: 32px" />
+//         <prx-button @onClick="onClickButton1" label="Secondary" buttonType="text" colorType="secondary" style="margin-right: 32px" />
+//         <prx-button @onClick="onClickButton2" label="Disabled" buttonType="text" colorType="primary" isDisabled="true" />
+//       </div>
+//       <div style="display: flex; margin-bottom: 32px">
+//         <prx-button @onClick="onClickButton1" label="Cancel" buttonType="outline" colorType="secondary" style="margin-right: 8px" />
+//         <prx-button @onClick="onClickButton2" label="Save" buttonType="outline" colorType="primary" style="margin-right: 32px" />
+//         <prx-button @onClick="onClickButton1" label="Secondary" buttonType="outline" colorType="secondary" style="margin-right: 32px" />
+//         <prx-button @onClick="onClickButton2" label="Disabled" buttonType="outline" colorType="primary" isDisabled="true" />
+//       </div>
+//       <div style="display: flex; margin-bottom: 32px">
+//         <prx-button @onClick="onClickButton1" label="Cancel" buttonType="contained" colorType="secondary" style="margin-right: 8px" />
+//         <prx-button @onClick="onClickButton2" label="Save" buttonType="contained" colorType="primary" style="margin-right: 32px" />
+//         <prx-button @onClick="onClickButton1" label="Secondary" buttonType="contained" colorType="secondary" style="margin-right: 32px" />
+//         <prx-button @onClick="onClickButton2" label="Disabled" buttonType="contained" colorType="primary" isDisabled="true" />
+//       </div>
+//     </div>
+//   `,
+//   methods: {
+//     onClickButton1: (isDisabled: boolean) => {
+//       if (!isDisabled) {
+//         console.log('flat button one clicked');
+//       }
+//     },
+//     onClickButton2: (isDisabled: boolean) => {
+//       if (!isDisabled) {
+//         console.log('flat button two clicked');
+//       }
+//     },
+//   },
+// });
 
-export const SampleFlat = () => ({
-  components: { PrxButton },
-  template: `
-    <div>
-      <div style="display: flex">
-        <prx-button @onClick="onClickButton1" label="Button1" buttonType="flat" colorType="primary" />
-        <prx-button @onClick="onClickButton2" label="Button2" buttonType="flat" colorType="secondary" />
-      </div>
-      <div style="display: flex; margin-top: 24px">
-        <prx-button @onClick="onClickButton1" label="Button1" buttonType="flat" colorType="primary" />
-        <prx-button @onClick="onClickButton2" label="Disabled" buttonType="flat" colorType="secondary" isDisabled="true" />
-      </div>
-      <div style="height: 200px; border: 1px solid black; margin-top: 24px; position: relative">
-        <div style="display: flex; position: absolute; bottom: 0; left: 0; right: 0;">
-          <prx-button @onClick="onClickButton1" label="Cancel" buttonType="flat" colorType="secondary" />
-          <prx-button @onClick="onClickButton2" label="Save" buttonType="flat" colorType="primary" />
-        </div>
-      </div>
-      <div style="height: 200px; border: 1px solid black; margin-top: 24px; position: relative">
-        <div style="display: flex; position: absolute; bottom: 0; left: 0; right: 0;">
-          <prx-button @onClick="onClickButton1" label="Conditional" buttonType="flat" colorType="conditional" />
-          <prx-button @onClick="onClickButton2" label="Delete" buttonType="flat" colorType="error" />
-        </div>
-      </div>
-    </div>
-  `,
-  methods: {
-    onClickButton1: (isDisabled: boolean) => {
-      if (!isDisabled) {
-        console.log('flat button one clicked');
-      }
-    },
-    onClickButton2: (isDisabled: boolean) => {
-      if (!isDisabled) {
-        console.log('flat button two clicked');
-      }
-    },
-  },
-});
+// export const SampleFlat = () => ({
+//   components: { PrxButton },
+//   template: `
+//     <div>
+//       <div style="display: flex">
+//         <prx-button @onClick="onClickButton1" label="Button1" buttonType="flat" colorType="primary" />
+//         <prx-button @onClick="onClickButton2" label="Button2" buttonType="flat" colorType="secondary" />
+//       </div>
+//       <div style="display: flex; margin-top: 24px">
+//         <prx-button @onClick="onClickButton1" label="Button1" buttonType="flat" colorType="primary" />
+//         <prx-button @onClick="onClickButton2" label="Disabled" buttonType="flat" colorType="secondary" isDisabled="true" />
+//       </div>
+//       <div style="height: 200px; border: 1px solid black; margin-top: 24px; position: relative">
+//         <div style="display: flex; position: absolute; bottom: 0; left: 0; right: 0;">
+//           <prx-button @onClick="onClickButton1" label="Cancel" buttonType="flat" colorType="secondary" />
+//           <prx-button @onClick="onClickButton2" label="Save" buttonType="flat" colorType="primary" />
+//         </div>
+//       </div>
+//       <div style="height: 200px; border: 1px solid black; margin-top: 24px; position: relative">
+//         <div style="display: flex; position: absolute; bottom: 0; left: 0; right: 0;">
+//           <prx-button @onClick="onClickButton1" label="Conditional" buttonType="flat" colorType="conditional" />
+//           <prx-button @onClick="onClickButton2" label="Delete" buttonType="flat" colorType="error" />
+//         </div>
+//       </div>
+//     </div>
+//   `,
+//   methods: {
+//     onClickButton1: (isDisabled: boolean) => {
+//       if (!isDisabled) {
+//         console.log('flat button one clicked');
+//       }
+//     },
+//     onClickButton2: (isDisabled: boolean) => {
+//       if (!isDisabled) {
+//         console.log('flat button two clicked');
+//       }
+//     },
+//   },
+// });

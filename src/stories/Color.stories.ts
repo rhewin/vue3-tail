@@ -1,13 +1,13 @@
-import Color from '../components/foundations/Color/index.vue';
+import PrxColor from '@/components/foundations/Color/index.vue';
+
+const Template = () => ({
+  components: { PrxColor },
+  template: '<prx-color />',
+});
 
 export default {
   title: 'Color',
-  component: Color,
+  component: PrxColor,
 };
 
-const Template = () => ({
-  components: { Color },
-  template: '<color />',
-});
-
-export const Basic = Template.bind({});
+export const Base = Template.bind({});

@@ -4,6 +4,9 @@ module.exports = {
   content: ['./index.html', './src/**/*.{html,vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      borderRadius: {
+        button: '40px',
+      },
       colors: {
         primary: {
           50: '#CCDAEE',
@@ -66,7 +69,19 @@ module.exports = {
           light: '#FCFCFC',
           dark: '#F5F5F5',
           darkBlue: '#F2F5F5',
+          lightBlue: '#F5F8FC',
+          white: 'F8FCFE',
           overlay: '#E8E8E8',
+        },
+        iconOnPrimary: {
+          highEmphasis: '#FFFFFF',
+          mediumEmphasis: '#FBFBFB',
+          lowEmphasis: '#F6F6F6',
+        },
+        iconOnSurface: {
+          highEmphasis: '#4C4F54',
+          mediumEmphasis: '#7F8184',
+          lowEmphasis: '#B2B3B5',
         },
         highEmphasis: {
           dark: '#4C4F54',
@@ -123,5 +138,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@marcreichel/tailwind-css-properties'),
+  ],
 };

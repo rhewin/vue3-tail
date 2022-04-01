@@ -1,179 +1,84 @@
 <template>
   <button
+    :size="size"
     :class="buttonClass"
-    @click="onClick(isDisabled)"
+    :isDisabled="isDisabled"
+    :colorType="colorType"
   >
-    <span
-      v-if="withIcon === 'left' && buttonType !== 'flat'"
-      :class="iconClass"
-    >+</span>
-    {{ label }}
-    <span
-      v-if="withIcon === 'right' && buttonType !== 'flat'"
-      :class="iconClass"
-    >+</span>
+    <div class="wrapper-button">
+      <div v-if="icon != '' && iconPosition === 'left'" class="align-middle inline-block mr-2">
+        <prx-icon :name="icon" :color="iconColor" width="16" height="16" />
+      </div>
+      <span class="align-middle inline-block">{{ label }}</span>
+      <div v-if="icon != '' && iconPosition === 'right'" class="align-middle inline-block ml-2">
+        <prx-icon :name="icon" :color="iconColor"  width="14" height="14" />
+      </div>
+    </div>
   </button>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'prx-button',
-  data() {
-    return {
-    };
-  },
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    size: {
-      type: String,
-      default: 'small',
-      validator: (value) => ['small', 'large'].indexOf(value) !== -1,
-    },
-    buttonType: {
-      type: String,
-      required: true,
-      default: 'text',
-      validator: (value) => ['text', 'outline', 'contained', 'flat'].indexOf(value) !== -1,
-    },
-    withIcon: {
-      type: String,
-      default: 'none',
-      validator: (value) => ['none', 'left', 'right'].indexOf(value) !== -1,
-    },
-    isDisabled: {
-      type: Boolean,
-      default: false,
-    },
-    colorType: {
-      type: String,
-      required: true,
-      default: 'primary',
-      validator: (value) => ['primary', 'secondary', 'error', 'conditional'].indexOf(value) !== -1,
-    },
-  },
-  computed: {
-    buttonClass() {
-      if (this.buttonType === 'text') return this.textClass();
-      if (this.buttonType === 'outline') return this.outlineClass();
-      if (this.buttonType === 'contained') return this.containedClass();
-      if (this.buttonType === 'flat') return this.flatClass();
-      return this.textClass();
-    },
-    iconClass() {
-      return this.classIcon();
-    },
-  },
-  methods: {
-    onClick(isDisabled) {
-      this.$emit('onClick', isDisabled);
-    },
-    textClass() {
-      return {
-        'storybook-button': true,
-        'inline-flex': true,
-        'justify-center': true,
-        'items-center': true,
-        'py-2': this.size === 'small',
-        'px-6': this.size === 'small' && this.withIcon === 'none',
-        'pl-4 pr-4': this.size === 'small' && this.withIcon !== 'none',
-        'py-3': this.size === 'large',
-        'px-8': this.size === 'large' && this.withIcon === 'none',
-        'pl-6 pr-6': this.size === 'large' && this.withIcon !== 'none',
-        'font-bold': true,
-        'text-secondary-400': !this.isDisabled && this.colorType === 'secondary',
-        'text-primary-400': !this.isDisabled && this.colorType === 'primary',
-        'text-white': this.isDisabled,
-        'rounded-full': true,
-        'bg-lowEmphasis-dark': this.isDisabled,
-        'cursor-pointer': !this.isDisabled,
-        'cursor-not-allowed': this.isDisabled,
-        'hover:bg-primary-400 hover:bg-opacity-hover': !this.isDisabled,
-      };
-    },
-    outlineClass() {
-      return {
-        'storybook-button': true,
-        'inline-flex': true,
-        'justify-center': true,
-        'items-center': true,
-        'py-2': this.size === 'small',
-        'px-6': this.size === 'small' && this.withIcon === 'none',
-        'pl-4 pr-4': this.size === 'small' && this.withIcon !== 'none',
-        'py-3': this.size === 'large',
-        'px-8': this.size === 'large' && this.withIcon === 'none',
-        'pl-6 pr-6': this.size === 'large' && this.withIcon !== 'none',
-        'font-bold': true,
-        'text-secondary-400': !this.isDisabled && this.colorType === 'secondary',
-        'text-primary-400': !this.isDisabled && this.colorType === 'primary',
-        'text-white': this.isDisabled,
-        'border-solid': !this.isDisabled,
-        'border-2': !this.isDisabled,
-        'border-secondary-400': !this.isDisabled && this.colorType === 'secondary',
-        'border-primary-400': !this.isDisabled && this.colorType === 'primary',
-        'rounded-full': true,
-        'bg-lowEmphasis-dark': this.isDisabled,
-        'cursor-pointer': !this.isDisabled,
-        'cursor-not-allowed': this.isDisabled,
-        'hover:bg-primary-400 hover:bg-opacity-hover': !this.isDisabled,
-      };
-    },
-    containedClass() {
-      return {
-        'storybook-button': true,
-        'inline-flex': true,
-        'justify-center': true,
-        'items-center': true,
-        'py-2': this.size === 'small',
-        'px-6': this.size === 'small' && this.withIcon === 'none',
-        'pl-4 pr-4': this.size === 'small' && this.withIcon !== 'none',
-        'py-3': this.size === 'large',
-        'px-8': this.size === 'large' && this.withIcon === 'none',
-        'pl-6 pr-6': this.size === 'large' && this.withIcon !== 'none',
-        'font-bold': true,
-        'text-white': true,
-        'bg-secondary-400': !this.isDisabled && this.colorType === 'secondary',
-        'bg-primary-400': !this.isDisabled && this.colorType === 'primary',
-        'rounded-full': true,
-        'bg-lowEmphasis-dark': this.isDisabled,
-        'cursor-pointer': !this.isDisabled,
-        'cursor-not-allowed': this.isDisabled,
-        'hover:bg-secondary-200': !this.isDisabled && this.colorType === 'secondary',
-        'hover:bg-primary-300': !this.isDisabled && this.colorType === 'primary',
-      };
-    },
-    classIcon() {
-      return {
-        'pr-2': this.withIcon === 'left',
-        'pl-2': this.withIcon === 'right',
-      };
-    },
-    flatClass() {
-      return {
-        'storybook-button': true,
-        relative: true,
-        flex: true,
-        'justify-center': true,
-        'items-center': true,
-        'w-full': true,
-        'py-5': true,
-        'font-bold': true,
-        'text-white': true,
-        'bg-secondary-400': !this.isDisabled && this.colorType === 'secondary',
-        'bg-primary-400': !this.isDisabled && this.colorType === 'primary',
-        'bg-red-400': !this.isDisabled && this.colorType === 'error',
-        'text-highEmphasis-dark': !this.isDisabled && this.colorType === 'conditional',
-        'bg-black-50': !this.isDisabled && this.colorType === 'conditional',
-        'bg-lowEmphasis-dark': this.isDisabled,
-        'cursor-pointer': !this.isDisabled,
-        'cursor-not-allowed': this.isDisabled,
-        'hover:bg-secondary-200': !this.isDisabled && this.colorType === 'secondary',
-        'hover:bg-primary-300': !this.isDisabled && this.colorType === 'primary',
-        'hover:bg-red-300': !this.isDisabled && this.colorType === 'error',
-      };
-    },
-  },
-};
+<script setup lang="ts">
+  import { computed } from 'vue'
+  import PrxIcon from '@/components/foundations/Iconography/BaseIcon.vue';
+  interface Props {
+    label: string,
+    size?: 'small' | 'large',
+    buttonType?: 'text' | 'outlined' | 'contained' | 'flat',
+    icon?: string,
+    iconPosition?: 'left' | 'right',
+    isDisabled?: boolean,
+    colorType?: 'primary' | 'secondary' | 'error' | 'conditional',
+  }
+
+  const props = withDefaults(defineProps<Props>(), {
+    buttonType: 'contained',
+    colorType: 'primary',
+    iconPosition: 'left',
+    isDisabled: false,
+    size: 'small',
+  })
+
+  const buttonClass = computed(() => {
+    const base: string = 'border-2 rounded-button txt-button'
+    const baseFlat: string = 'border-2 txt-body1-700 relative w-full p-button-flat text-white'
+    const baseDisabled: string = 'bg-lowEmphasis-dark border-lowEmphasis-dark text-white cursor-not-allowed'
+    const baseError: string = 'bg-red-400 border-red-400 text-white hover:bg-red-300'
+    var classMap: any = {
+      'contained-primary': `${base} text-white bg-primary-400 border-primary-400 hover:bg-primary-300 hover:border-primary-300`,
+      'contained-secondary': `${base} text-white bg-secondary-400 border-secondary-400 hover:bg-secondary-200 hover:border-secondary-200`,
+      'outlined-primary': `${base} text-primary-400 border-primary-400 hover:border-primary-300 hover:text-primary-300`,
+      'outlined-secondary': `${base} text-secondary-400 border-secondary-400 hover:border-secondary-200 hover:text-secondary-200`,
+      'text-primary': `${base} text-primary-400 border-transparent hover:bg-surface-lightBlue`,
+      'text-secondary': `${base} text-secondary-400 border-transparent hover:bg-surface-white`,
+      'flat-primary': `${baseFlat} bg-primary-400 border-primary-400 hover:bg-primary-300 hover:border-primary-300`,
+      'flat-secondary': `${baseFlat} bg-secondary-400 border-secondary-400 hover:bg-secondary-200 hover:border-secondary-200`,
+    }
+
+    var key: string = props.buttonType+'-'+props.colorType
+    if (props.buttonType != 'flat') {
+      classMap[key] = (props.colorType == 'error') ? `${base} ${baseError}`: classMap[key];
+      classMap[key] = (props.isDisabled) ? `${base} ${baseDisabled}`: classMap[key];
+    } else {
+      classMap[key] = (props.colorType == 'error') ? `${baseFlat} ${baseError}`: classMap[key];
+      classMap[key] = (props.isDisabled) ? `${baseFlat} ${baseDisabled}`: classMap[key];
+    }
+    classMap[key] += (props.size == 'large' && props.buttonType != 'flat')? ' p-button-lg' : ' p-button';
+    return classMap[key];
+  })
+
+  const iconColor = computed(() => {
+    var classMap: any = {
+      'contained-primary': 'var(--color-surface-main)',
+      'contained-secondary': 'var(--color-surface-main)',
+      'outlined-primary': 'var(--color-primary-400)',
+      'outlined-secondary': 'var(--color-secondary-400)',
+      'text-primary': 'var(--color-primary-400)',
+      'text-secondary': 'var(--color-secondary-400)',
+      'flat-primary': 'var(--color-surface-main)',
+      'flat-secondary': 'var(--color-surface-main)',
+    }
+    var key: string = props.buttonType+'-'+props.colorType
+    classMap[key] = (props.isDisabled || props.colorType == 'error')? 'var(--color-surface-main)' : classMap[key];
+    return classMap[key];
+  })
 </script>

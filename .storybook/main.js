@@ -8,6 +8,14 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-links',
     {
+      name: 'storybook-addon-sass-postcss',
+      options: {
+        postcssLoaderOptions: {
+          implementation: require('postcss'),
+        },
+      },
+    },
+    {
       name: '@storybook/addon-postcss',
       options: {
         cssLoaderOptions: {
@@ -21,6 +29,14 @@ module.exports = {
   ],
   framework: '@storybook/vue3',
   webpackFinal: async (config) => {
+    config.module.rules = config.module.rules.filter(
+      (f) => f.test && f.test.toString() !== '/\\.css$/'
+    );
+    config.module.rules.push({
+      test: /\.css$/,
+      loaders: ['sass-loader'],
+      include: path.resolve(__dirname, '../'),
+    });
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, '../src/'),

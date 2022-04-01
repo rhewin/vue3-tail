@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h1>Colors</h1>
+    <h3>Colors</h3>
     <primary />
     <secondary />
     <red />
     <green />
     <yellow />
     <black />
-    <h1>Surface</h1>
+    <h3>Surface</h3>
     <surface />
-    <h1>Opacity</h1>
+    <h3>Opacity</h3>
     <opacity />
   </div>
 </template>
